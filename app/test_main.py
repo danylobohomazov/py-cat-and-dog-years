@@ -21,10 +21,12 @@ def test_logic_for_different_ages(human_cat_age, human_dog_age, expected_result)
 @pytest.mark.parametrize(
     'human_cat_age,human_dog_age,expected_result',
     [
-        pytest.param(-13, -13, OutOfRangeError, id="Negative numbers"),
-        pytest.param(2222, 2222, OutOfRangeError, id="Very Large number"),
-        pytest.param("2222", 2222, TypeError, id="Wrong type"),
-        pytest.param(2222, "2222", TypeError, id="Wrong type"),
+        pytest.param(-13, 13, OutOfRangeError, id="Negative cat"),
+        pytest.param(13, -13, OutOfRangeError, id="Negative dog"),
+        pytest.param(10, 222, OutOfRangeError, id="Large dog"),
+        pytest.param(222, 10, OutOfRangeError, id="large cat"),
+        pytest.param("2222", 2222, TypeError, id="Wrong type of cat"),
+        pytest.param(2222, "2222", TypeError, id="Wrong type of dog"),
     ])
 def test_logic_for_incorrect_numbers(human_cat_age, human_dog_age, expected_result) -> None:
     with pytest.raises(expected_result):
