@@ -13,6 +13,7 @@ from app.errors import OutOfRangeError
         pytest.param(23, 23, [1, 1], id="15 < Ages < 24"),
         pytest.param(24, 24, [2, 2], id="Ages == 24"),
         pytest.param(28, 28, [3, 2], id="Ages > 24"),
+        pytest.param(100, 100, [21, 17], id="Ages large number"),
     ])
 def test_logic_for_different_ages(human_cat_age, human_dog_age, expected_result) -> None:
     assert get_human_age(human_cat_age, human_dog_age) == expected_result
